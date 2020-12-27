@@ -1,0 +1,29 @@
+#Build imagem
+docker build -f Dockerfile -t image .
+#Rodar imagem
+docker run -d -p 8889:8889 image
+#Consultar processos
+docker ps
+#Remover processos
+docker rm -f id
+#Rodar em modo interativo
+docker run -it
+#Empurrar para repositório
+docker push image
+#Download imagem
+docker pull image
+#Subir os serviços
+docker compose up
+#Remover todos os containers
+docker rm -vf $(docker ps -a -q)
+#Realizar build no compose
+docker-compose build node
+#Verificar recursos
+docker stats
+#Inspecionar
+docker inspect
+#Interagir com o container
+docker exec id
+
+#---Git---
+git push -f encaminhador master

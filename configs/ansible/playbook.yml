@@ -1,0 +1,44 @@
+- hosts: all
+
+  tasks:
+    - name: 'Instalar net-tools'
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600 #1 hora
+        name: net-tools
+        state: latest
+      become: yes
+
+    - name: 'Instalar dependencias'
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600 #1 hora
+        name:  ['apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+        state: latest
+      become: yes
+
+    - name: 'Instalar Docker'
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600 #1 hora
+        name:  ['docker', 'docker.io', 'docker-compose']
+        state: latest
+      become: yes
+
+#    - name: Iniciar projeto
+#      command: docker-compose run node django-admin startproject setup .
+#      become: true
+#      args:
+#        chdir: /vagrant/docker/
+
+    - name: Dar permissão
+      command: chown -R $USER:$USER .
+      become: true
+      args:
+        chdir: /vagrant/docker/
+
+    - name: Subir compose
+      command: docker-compose up
+      become: true
+      args:
+        chdir: /vagrant/docker/

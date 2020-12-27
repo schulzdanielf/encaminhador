@@ -1,0 +1,13 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "encaminhador"]
+	url = https://github.com/schulzdanielf/encaminhador.git
+	fetch = +refs/heads/*:refs/remotes/encaminhador/*
+[branch "master"]
+	remote = encaminhador
+	merge = refs/heads/master

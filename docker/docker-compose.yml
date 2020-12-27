@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - docker-network
+      
+  node:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8889
+    volumes:
+      - .:/code
+    ports:
+      - "8889:8889"
+    depends_on:
+      - db
+    networks:
+      - docker-network
+
+networks:
+  docker-network:
+    driver: bridge
