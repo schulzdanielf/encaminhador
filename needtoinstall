@@ -1,0 +1,9 @@
+apt-get install net-tools
+docker-compose
+djangorestframework
+markdown
+
+
+
+docker-compose run node django-admin startproject setup .
+docker-compose run node python manage.py startapp alarmes
