@@ -16,7 +16,7 @@ class EventosViewSet(viewsets.ModelViewSet):
         action = self.request.data.get('action')
         #os.system('python cout.py '+action)
         equipe = Classificador.classifica(action)
-        url = 'http://localhost:8889/incidente/'
+        url = 'http://localhost:8123/incidente/'
         myobj = {'action':action, 'equipe':equipe, 'hostname':'POSTMAN'}
         x = requests.post(url, data = myobj)
 

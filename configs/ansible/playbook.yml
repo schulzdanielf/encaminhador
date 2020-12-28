@@ -38,7 +38,18 @@
         chdir: /vagrant/docker/
 
     - name: Subir compose
-      command: docker-compose up
+      command: docker-compose up -d
+      become: true
+      args:
+        chdir: /vagrant/docker/
+        
+    - name: makemigrations
+      command: docker-compose exec node python manage.py makemigrations
+      become: true
+      args:
+        chdir: /vagrant/docker/
+    - name: migrate
+      command: docker-compose exec node python manage.py migrate
       become: true
       args:
         chdir: /vagrant/docker/

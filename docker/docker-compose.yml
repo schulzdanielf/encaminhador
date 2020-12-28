@@ -17,11 +17,11 @@ services:
 #    command: chown postgres /var/lib/postgresql/data/
   node:
     build: .
-    command: python manage.py runserver 0.0.0.0:8889
+    command: python manage.py runserver 0.0.0.0:8123
     volumes:
       - .:/code
     ports:
-      - "8889:8889"
+      - "8888:8888"
     depends_on:
       - db
     networks:
