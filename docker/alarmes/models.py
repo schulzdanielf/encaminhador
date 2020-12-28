@@ -20,13 +20,13 @@ class Evento(models.Model):
 class Incidente(models.Model):
     action = models.CharField(max_length=1000)
     EQUIPE = (
-        ('1', 'GPROM-31'),
-        ('2', 'GPROM-32'),
-        ('3', 'GPROM-33'),
-        ('4', 'GPROM-35'),
-        ('5', 'GPROM-73'),
-        ('6', 'GSERV-AU'),
-        ('7', 'DAT-SP')
+        ('0', 'GSERV-AU'),
+        ('1', 'DAT-SP'),
+        ('2', 'GPROM-31'),
+        ('3', 'GPROM-32'),
+        ('4', 'GPROM-33'),
+        ('5', 'GPROM-35'),
+        ('6', 'GPROM-72'),
     )
     equipe = models.CharField(max_length=1, choices=EQUIPE, blank=False, null=False,default='1')
     hostname = models.CharField(max_length=100)
