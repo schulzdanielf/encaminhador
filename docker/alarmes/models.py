@@ -6,7 +6,16 @@ class Evento(models.Model):
     data_evento = models.DateTimeField()
 
     def __str__(self):
-        return self.descricao
+        return self.action
+
+    def post(self, request):
+        action = self.request.POST.get('action','')
+        os.system('python cout.py '+action)
+        return Response(
+            {
+                "Status":True
+            }
+        )
 
 class Incidente(models.Model):
     action = models.CharField(max_length=1000)
@@ -23,4 +32,4 @@ class Incidente(models.Model):
     hostname = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.descricao
+        return self.action

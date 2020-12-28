@@ -1,1 +1,1 @@
-{"virtualbox":{"/configs":{"guestpath":"/configs","hostpath":"E:/desenv/.git/configs","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"E:/desenv/.git","disabled":false,"__vagrantfile":true}}}
+{"virtualbox":{"/configs":{"guestpath":"/configs","hostpath":"E:/desenv/encaminhador/configs","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"E:/desenv/encaminhador","disabled":false,"__vagrantfile":true}}}
