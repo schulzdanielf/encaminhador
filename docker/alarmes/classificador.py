@@ -11,8 +11,6 @@ nltk.download('stopwords')
 
 class Classificador():
 
-
-
     def classifica(action):
         with open('alarmes/classificador/label_encoder', 'rb') as training_model:
             le = pickle.load(training_model)

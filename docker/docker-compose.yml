@@ -9,7 +9,12 @@ services:
       - POSTGRES_PASSWORD=postgres
     networks:
       - docker-network
-      
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+#      - pgconf:/etc/postgresql
+#      - pglog:/var/log/postgresql
+
+#    command: chown postgres /var/lib/postgresql/data/
   node:
     build: .
     command: python manage.py runserver 0.0.0.0:8889
@@ -25,3 +30,8 @@ services:
 networks:
   docker-network:
     driver: bridge
+
+volumes:
+  pgdata:
+#  pgconf:
+#  pglog:
