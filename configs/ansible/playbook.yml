@@ -25,31 +25,46 @@
         state: latest
       become: yes
 
-#    - name: Iniciar projeto
-#      command: docker-compose run node django-admin startproject setup .
+    - name: Verifica se o Docker Swarm está habilitado
+      shell: docker info
+      changed_when: False
+      register: docker_info
+      become: true
+
+    - name: Listar nodes
+      command: docker node ls
+      become: true
+      when: "'manager' in group_names"
+
+    - name: Atualizar serviço banco de dados
+      command: docker service update encaminhador_db --force
+      become: true
+      when: "'manager' in group_names"
+
+    - name: Atualizar serviço web
+      command: docker service update encaminhador_web --force
+      become: true
+      when: "'manager' in group_names"
+
+#    - name: Dar permissão
+#      command: chown -R $USER:$USER .
 #      become: true
 #      args:
 #        chdir: /vagrant/docker/
 
-    - name: Dar permissão
-      command: chown -R $USER:$USER .
-      become: true
-      args:
-        chdir: /vagrant/docker/
+#    - name: Subir compose
+#      command: docker-compose up -d
+#      become: true
+#      args:
+#        chdir: /vagrant/docker/
 
-    - name: Subir compose
-      command: docker-compose up -d
-      become: true
-      args:
-        chdir: /vagrant/docker/
-        
-    - name: makemigrations
-      command: docker-compose exec node python manage.py makemigrations
-      become: true
-      args:
-        chdir: /vagrant/docker/
-    - name: migrate
-      command: docker-compose exec node python manage.py migrate
-      become: true
-      args:
-        chdir: /vagrant/docker/
+#    - name: makemigrations
+#      command: docker-compose exec node python manage.py makemigrations
+#      become: true
+#      args:
+#        chdir: /vagrant/docker/
+#    - name: migrate
+#      command: docker-compose exec node python manage.py migrate
+#      become: true
+#      args:
+#        chdir: /vagrant/docker/

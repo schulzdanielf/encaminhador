@@ -24,6 +24,11 @@ docker stats
 docker inspect
 #Interagir com o container
 docker exec id
+#Docker Swarm
+docker swarm init --advertise-addr 192.168.1.110
+#Docker stack
+docker stack deploy --compose-file docker-compose.yml encaminhador
 
 #---Git---
 git push -f encaminhador master
+git filter-branch --tree-filter "rm -rf docker/alarmes/classificador/text_classifier" HEAD

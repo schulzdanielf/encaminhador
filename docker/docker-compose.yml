@@ -7,16 +7,17 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-    networks:
-      - docker-network
     volumes:
       - pgdata:/var/lib/postgresql/data
+    deploy:
+      restart_policy:
+        condition: on-failure
 #      - pgconf:/etc/postgresql
 #      - pglog:/var/log/postgresql
 
 #    command: chown postgres /var/lib/postgresql/data/
-  node:
-    build: .
+  web:
+    image: schulzdaniel/django
     command: python manage.py runserver 0.0.0.0:8123
     volumes:
       - .:/code
@@ -24,8 +25,10 @@ services:
       - "8123:8123"
     depends_on:
       - db
-    networks:
-      - docker-network
+    deploy:
+      restart_policy:
+        condition: on-failure
+      replicas: 2
 
 networks:
   docker-network:

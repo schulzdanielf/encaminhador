@@ -51,7 +51,10 @@ Vagrant.configure("2") do |config|
       ansible.vm.provision "shell",
         inline: "apt-get update && \
                  apt-get install -y software-properties-common && \
-                 apt-get install -y ansible"
+                 apt-get install -y ansible && \
+                 apt-get install -y docker && \
+                 apt-get install -y docker.io && \
+                 apt-get install -y docker-compose"
 
       ansible.vm.provision "shell",
         inline: "ansible-playbook --private-key id_ubuntu -i /vagrant/configs/ansible/hosts /vagrant/configs/ansible/playbook.yml"
