@@ -31,4 +31,4 @@ docker stack deploy --compose-file docker-compose.yml encaminhador
 
 #---Git---
 git push -f encaminhador master
-git filter-branch --tree-filter "rm -rf docker/alarmes/classificador/text_classifier" HEAD
+git filter-branch --tree-filter "rm -rf --cached --ignore-unmatch docker/alarmes/classificador/text_classifier" HEAD
