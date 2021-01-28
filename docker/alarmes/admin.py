@@ -2,8 +2,8 @@ from django.contrib import admin
 from alarmes.models import Evento, Incidente
 
 class Eventos(admin.ModelAdmin):
-    list_display = ('id', 'action', 'data_evento')
-    list_display_links = ('id', 'action', 'data_evento')
+    list_display = ('id', 'action', 'data_evento', 'Ambiente')
+    list_display_links = ('id', 'action', 'data_evento', 'Ambiente')
     search_fields = ('action',)
     list_per_page = 20
 
