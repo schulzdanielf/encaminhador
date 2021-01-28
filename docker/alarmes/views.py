@@ -18,18 +18,16 @@ class EventosViewSet(viewsets.ModelViewSet):
         return HttpResponse()
 
     def create(self, request):
-        action = self.request.data.get('action')
-        
-        #os.system('python cout.py '+action)
+
+
         try:
-            equipe = Classificador.classifica(action)
+            json = Criador.cria_incidente(self.request)
         except:
-            return Response({"status_code":405, "Message": "Campo action preenchido inválido"})
+            return Response({"status_code":405, "Message": "Algum erro ocorreu no processamento"})
 
         url = 'http://localhost:8123/incidente/'
-        json = Criador.cria_incidente(self.request)
-        json['equipe'] = equipe
-        json['hostname'] = 'teste'
+
+        json['Hostname'] = 'teste'
 
 #        myobj = {'action':action, 'equipe':equipe, 'hostname':'POSTMAN'}
 
@@ -39,7 +37,7 @@ class EventosViewSet(viewsets.ModelViewSet):
 
         return Response(
             {
-                "status_code":x.status_code, 'equipe':equipe, "json": json
+                "status_code":x.status_code, 'equipe':json['AssignmentGroup']
             }
         )
 

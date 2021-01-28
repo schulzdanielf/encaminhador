@@ -3,7 +3,7 @@ from datetime import datetime
 
 # Create your models here.
 class Evento(models.Model):
-    action = models.CharField(max_length=1000)
+
     Description = models.CharField(max_length=1000, default="")
     Ambiente = models.CharField(max_length=100, default="")
     Area = models.CharField(max_length=1000, default="", editable=False)
@@ -16,7 +16,6 @@ class Evento(models.Model):
     Impact = models.CharField(max_length=1000, default="", editable=False)
     IncidentID = models.CharField(max_length=100, default="", editable=False)
     OpenTime = models.DateTimeField(default=datetime.now(), editable=False)
-    #OpenTime = models.DateTimeField(default='2021-01-01 00:00', editable=False)
     OpenedBy = models.CharField(max_length=100, default="", editable=False)
     Service = models.CharField(max_length=1000, default="", editable=False)
     Status = models.CharField(max_length=1000, default="", editable=False)
@@ -26,7 +25,7 @@ class Evento(models.Model):
     UpdateBy = models.CharField(max_length=1000, default="", editable=False)
     UpdateTime  = models.DateTimeField(default=datetime.now(), editable=False)
     Urgency = models.CharField(max_length=100, default="", editable=False)
-    data_evento = models.DateTimeField()
+
 
     def __str__(self):
         return self.action
@@ -41,18 +40,9 @@ class Evento(models.Model):
         )
 
 class Incidente(models.Model):
-    action = models.CharField(max_length=1000)
-    EQUIPE = (
-        ('0', 'GSERV-AU'),
-        ('1', 'DAT-SP'),
-        ('2', 'GPROM-31'),
-        ('3', 'GPROM-32'),
-        ('4', 'GPROM-33'),
-        ('5', 'GPROM-35'),
-        ('6', 'GPROM-72'),
-    )
-    equipe = models.CharField(max_length=1, choices=EQUIPE, blank=False, null=False,default='1')
-    hostname = models.CharField(max_length=100)
+#    action = models.CharField(max_length=1000)
+
+    Hostname = models.CharField(max_length=100)
     Ambiente = models.CharField(max_length=100, default="")
     Area = models.CharField(max_length=1000, default="")
     Assignee = models.CharField(max_length=1000, default="")
@@ -73,7 +63,6 @@ class Incidente(models.Model):
     UpdateBy = models.CharField(max_length=1000, default="")
     UpdateTime  = models.DateTimeField(default=datetime.now())
     Urgency = models.CharField(max_length=100, default="")
-    data_evento = models.DateTimeField(default=datetime.now())
 
     def __str__(self):
         return self.action

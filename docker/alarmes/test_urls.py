@@ -28,5 +28,4 @@ class AlarmesURLSTestCase(TestCase):
          "data_evento": "2020-12-27T19:13:00-03:00", "string_errada":"errado"}
 
         r = requests.post('http://localhost:8123/evento/', data=myobj)
-        print(r.status_code)
         self.assertEqual(r.status_code, 200)
