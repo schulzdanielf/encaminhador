@@ -24,9 +24,9 @@ class AlarmesURLSTestCase(TestCase):
 
     def test_post_evento(self):
         """Testa a API está recebendo eventos e classificando"""
-        myobj = {'action':"Data: Tue Nov 03 11:43:14 BRST 2020\nHost: pxl1tbs00012\nID: 85bc26bc-1dda-71eb-1192-ac11d8ae0000\nMensagem: LINUX - Consumo de DISCO = 98.860000%, acima do estabelecido(90%) - FileSystem=/var/log\nInstrucao: Atributo Customizado não cadastrado, verificar no evento campo Instruction.",
+        myobj = {"action":"Data: Tue Nov 03 11:43:14 BRST 2020\nHost: pxl1tbs00012\nID: 85bc26bc-1dda-71eb-1192-ac11d8ae0000\nMensagem: LINUX - Consumo de DISCO = 98.860000%, acima do estabelecido(90%) - FileSystem=/var/log\nInstrucao: Atributo Customizado não cadastrado, verificar no evento campo Instruction.",
          "data_evento": "2020-12-27T19:13:00-03:00", "string_errada":"errado"}
 
         r = requests.post('http://localhost:8123/evento/', data=myobj)
-
+        print(r.status_code)
         self.assertEqual(r.status_code, 200)

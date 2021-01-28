@@ -4,7 +4,8 @@ from datetime import datetime
 # Create your models here.
 class Evento(models.Model):
     action = models.CharField(max_length=1000)
-    Ambiente = models.CharField(max_length=100, default="", editable=False)
+    Description = models.CharField(max_length=1000, default="")
+    Ambiente = models.CharField(max_length=100, default="")
     Area = models.CharField(max_length=1000, default="", editable=False)
     Assignee = models.CharField(max_length=1000, default="", editable=False)
     AssignmentGroup = models.CharField(max_length=1000, default="", editable=False)
@@ -52,6 +53,27 @@ class Incidente(models.Model):
     )
     equipe = models.CharField(max_length=1, choices=EQUIPE, blank=False, null=False,default='1')
     hostname = models.CharField(max_length=100)
+    Ambiente = models.CharField(max_length=100, default="")
+    Area = models.CharField(max_length=1000, default="")
+    Assignee = models.CharField(max_length=1000, default="")
+    AssignmentGroup = models.CharField(max_length=1000, default="")
+    Category = models.CharField(max_length=1000, default="")
+    Contact = models.CharField(max_length=1000, default="")
+    Description = models.CharField(max_length=1000, default="")
+    EquipeCriador = models.CharField(max_length=1000, default="")
+    Impact = models.CharField(max_length=1000, default="")
+    IncidentID = models.CharField(max_length=100, default="")
+    OpenTime = models.DateTimeField(default=datetime.now())
+    OpenedBy = models.CharField(max_length=100, default="")
+    Service = models.CharField(max_length=1000, default="")
+    Status = models.CharField(max_length=1000, default="")
+    Subarea = models.CharField(max_length=1000, default="")
+    TelefoneSolicitante = models.CharField(max_length=1000, default="")
+    Title  = models.CharField(max_length=1000, default="")
+    UpdateBy = models.CharField(max_length=1000, default="")
+    UpdateTime  = models.DateTimeField(default=datetime.now())
+    Urgency = models.CharField(max_length=100, default="")
+    data_evento = models.DateTimeField(default=datetime.now())
 
     def __str__(self):
         return self.action

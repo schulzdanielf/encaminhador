@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from alarmes.classificador import Classificador
 import requests
 from django.http import HttpResponse
+from alarmes.criador import Criador
 
 
 class EventosViewSet(viewsets.ModelViewSet):
@@ -18,16 +19,27 @@ class EventosViewSet(viewsets.ModelViewSet):
 
     def create(self, request):
         action = self.request.data.get('action')
+        
         #os.system('python cout.py '+action)
-        equipe = Classificador.classifica(action)
+        try:
+            equipe = Classificador.classifica(action)
+        except:
+            return Response({"status_code":405, "Message": "Campo action preenchido inválido"})
+
         url = 'http://localhost:8123/incidente/'
-        myobj = {'action':action, 'equipe':equipe, 'hostname':'POSTMAN'}
-        x = requests.post(url, data = myobj)
+        json = Criador.cria_incidente(self.request)
+        json['equipe'] = equipe
+        json['hostname'] = 'teste'
+
+#        myobj = {'action':action, 'equipe':equipe, 'hostname':'POSTMAN'}
+
+
+        x = requests.post(url, data = json)
 
 
         return Response(
             {
-                "Status":True, 'equipe':equipe
+                "status_code":x.status_code, 'equipe':equipe, "json": json
             }
         )
 
