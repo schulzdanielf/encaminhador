@@ -1,5 +1,5 @@
 #Build imagem
-docker build -f Dockerfile -t image .
+docker build -t schulzdaniel/nom_imagem .
 #Rodar imagem
 docker run -d -p 8889:8889 image
 #Consultar processos
@@ -30,5 +30,7 @@ docker swarm init --advertise-addr 192.168.1.110
 docker stack deploy --compose-file docker-compose.yml encaminhador
 
 #---Git---
+#Iniciar respositorio
+git init
 git push -f encaminhador master
 git filter-branch --tree-filter "rm -rf --cached --ignore-unmatch docker/alarmes/classificador/text_classifier" HEAD

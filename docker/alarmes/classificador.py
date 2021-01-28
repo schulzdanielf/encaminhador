@@ -6,8 +6,7 @@ from nltk.corpus import stopwords
 import sklearn
 import re
 import numpy as np
-nltk.download('punkt')
-nltk.download('stopwords')
+
 
 class Classificador():
 

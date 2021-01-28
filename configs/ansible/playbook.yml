@@ -1,3 +1,4 @@
+---
 - hosts: all
 
   tasks:
@@ -8,6 +9,7 @@
         name: net-tools
         state: latest
       become: yes
+
 
     - name: 'Instalar dependencias'
       apt:
@@ -24,6 +26,7 @@
         name:  ['docker', 'docker.io', 'docker-compose']
         state: latest
       become: yes
+
 
     - name: Verifica se o Docker Swarm está habilitado
       shell: docker info

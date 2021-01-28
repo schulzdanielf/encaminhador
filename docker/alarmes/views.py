@@ -5,12 +5,16 @@ import os
 from rest_framework.response import Response
 from alarmes.classificador import Classificador
 import requests
+from django.http import HttpResponse
 
 
 class EventosViewSet(viewsets.ModelViewSet):
     """Exibindo todos os eventos"""
     queryset = Evento.objects.all()
     serializer_class = EventoSerializer
+
+    def index(request):
+        return HttpResponse()
 
     def create(self, request):
         action = self.request.data.get('action')
@@ -31,3 +35,6 @@ class IncidentesViewSet(viewsets.ModelViewSet):
     """Exibindo todos os incidentes"""
     queryset = Incidente.objects.all()
     serializer_class = IncidenteSerializer
+
+    def index(request):
+        return HttpResponse()

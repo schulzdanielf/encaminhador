@@ -1,8 +1,8 @@
-FROM schulzdaniel/django
-ENV PYTHONUNBUFFERED=1
-MAINTAINER DANIEL SCHULZ
+FROM python:3
+LABEL version="1.0.0" description="Disponibilizando site com Django" maintainer="Daniel F. Schulz<danielschulz@bb.com.br>"
 WORKDIR /code
-COPY requirements.txt /code/
-RUN pip install -r requirements.txt
 COPY . /code
-RUN python nltk_requirements.py
+RUN mkdir /usr/share/nltk
+COPY ./packages/punkt ./packages/stopwords /usr/share/nltk/
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
