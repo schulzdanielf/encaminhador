@@ -27,7 +27,7 @@ class EventosViewSet(viewsets.ModelViewSet):
 
         url = 'http://localhost:8123/incidente/'
 
-        json['Hostname'] = 'teste'
+#        json['Hostname'] = 'teste'
 
 #        myobj = {'action':action, 'equipe':equipe, 'hostname':'POSTMAN'}
 

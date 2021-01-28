@@ -74,4 +74,4 @@ class Classificador():
         #Retorna a previsão
         probs = classifier.predict_proba(array)
         best_n = np.argsort(probs, axis = 1)[:,-1:]
-        return best_n[0]
+        return best_n[0], hostname
