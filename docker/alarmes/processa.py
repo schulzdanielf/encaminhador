@@ -1,10 +1,11 @@
 from alarmes.classificador import Classificador
+import json as js
 
-class Criador():
+class Processa():
 
     def cria_incidente(request):
-        json = Criador.cria_json(request)
-        json['AssignmentGroup'], json['equipe'], json['Hostname'] = Criador.classifica_equipe(json['Description'])
+        json = Processa.cria_json(request)
+        json['AssignmentGroup'], json['equipe'], json['Hostname'] = Processa.classifica_equipe(json['Description'])
         return json
 
     def cria_json(request):
@@ -12,8 +13,11 @@ class Criador():
         data = request.data
         for item in data:
             if item == "Description":
+                for i in item:
+                    if i is None:
+                        item.remove(i)
                 data[item] = '\n'.join(data[item])
-            if data[item] != "":
+            if data[item] is not None:
                 json[item] = data[item]
         return json
 

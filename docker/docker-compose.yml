@@ -9,11 +9,19 @@ services:
       - POSTGRES_PASSWORD=postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
     deploy:
       restart_policy:
         condition: on-failure
 #      - pgconf:/etc/postgresql
 #      - pglog:/var/log/postgresql
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
 
 #    command: chown postgres /var/lib/postgresql/data/
   web:

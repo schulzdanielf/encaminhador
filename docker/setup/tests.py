@@ -7,3 +7,5 @@ class AlarmesTestCase(LiveServerTestCase):
         pass
     def tearDown(self):
         pass
+
+        

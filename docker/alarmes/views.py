@@ -6,8 +6,8 @@ from rest_framework.response import Response
 from alarmes.classificador import Classificador
 import requests
 from django.http import HttpResponse
-from alarmes.criador import Criador
-
+from alarmes.processa import Processa
+from alarmes.aviso  import Aviso
 
 class EventosViewSet(viewsets.ModelViewSet):
     """Exibindo todos os eventos"""
@@ -19,11 +19,17 @@ class EventosViewSet(viewsets.ModelViewSet):
 
     def create(self, request):
 
+#        try:
+        json = Processa.cria_incidente(self.request)
+#        except:
+#            return Response({"status_code":405, "Message": "Algum erro ocorreu no processamento"})
+        aviso = Aviso()
+        if json['Hostname'] is not None:
+            if aviso.busca_hostname_aberto(json['Hostname']) > 0:
+                return Response({"status_code":407, "Message": "Existe um incidente aberto para este hostname no GSTI"})
+        else:
+            return Response({"status_code":406, "Message": "Não foi possível localizar o hostname do Incidente"})
 
-        try:
-            json = Criador.cria_incidente(self.request)
-        except:
-            return Response({"status_code":405, "Message": "Algum erro ocorreu no processamento"})
 
         url = 'http://localhost:8123/incidente/'
 
