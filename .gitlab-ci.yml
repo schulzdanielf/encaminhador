@@ -1,6 +1,12 @@
 image: docker:stable
 
+services:
+- docker:dind
+
+before_script:
+- docker info
+
 build-docker:
   stage: build
   script:
-  - docker build -t schulzdaniel/django:1.1
+  - docker build -t schulzdaniel/django:1.1 .
