@@ -9,4 +9,4 @@ before_script:
 build-docker:
   stage: build
   script:
-  - docker build -t schulzdaniel/django:1.1 .
+  - docker build -t schulzdaniel/django:1.1 docker/.
