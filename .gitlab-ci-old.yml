@@ -11,5 +11,6 @@ before_script:
 build-docker:
   stage: build
   script:
-  - echo $CI_REGISTRY_PASSWORD
-  - echo CI_REGISTRY_USER
+  - docker build -t schulzdaniel/django:1.1 docker/.
+  - docker tag django  schulzdaniel/django:1.1
+  - docker push schulzdaniel/django:1.1
