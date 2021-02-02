@@ -1,4 +1,6 @@
-job1:
+image: docker:stable
+
+build-docker:
+  stage: build
   script:
-  - echo "Hello World"
-  - echo date
+  - docker build -t schulzdaniel/django:1.1
