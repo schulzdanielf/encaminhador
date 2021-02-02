@@ -11,6 +11,6 @@ before_script:
 build-docker:
   stage: build
   script:
-  - docker build -t schulzdaniel/django:1.1 docker/.
-  - docker tag django:1.1  schulzdaniel/django:1.1
+  - docker build -t django docker/.
+  - docker tag django schulzdaniel/django:1.1
   - docker push schulzdaniel/django:1.1
