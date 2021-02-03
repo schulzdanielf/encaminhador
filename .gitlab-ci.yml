@@ -45,7 +45,8 @@ test-project:
   stage: test
   services:
   - docker:dind
-  - postgres
+  - name: postgres
+    alias: db
   variables:
     POSTGRES_DB: 'postgres'
     POSTGRES_USER: 'postgres'
