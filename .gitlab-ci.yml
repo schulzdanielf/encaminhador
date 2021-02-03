@@ -7,8 +7,6 @@ stages:
 - deploy
 
 
-
-
 build-docker:
   services:
   - docker:dind
@@ -31,4 +29,22 @@ build-project:
   dependencies:
   - build-docker
   script:
-  - echo "runner"
+  - python manage.py makemigrations
+  - python manage.py migrate
+
+
+test-project:
+  stage: test
+  services:
+  - docker:dind
+  - postgres
+  variables:
+    - POSTGRES_DB=postgres
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
+  dependencies:
+  - build-project
+  tags:
+  - executor-tarefas
+  script:
+  - python -m manage.py test
