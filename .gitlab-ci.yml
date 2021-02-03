@@ -36,8 +36,8 @@ build-project:
 #  dependencies:
 #  - build-docker
   script:
-  - python manage.py makemigrations
-  - python manage.py migrate
+  - python docker/manage.py makemigrations
+  - python docker/manage.py migrate
 
 
 test-project:
@@ -50,7 +50,7 @@ test-project:
     POSTGRES_USER: 'postgres'
     POSTGRES_PASSWORD: 'postgres'
   dependencies:
-  - build-project
+#  - build-project
   tags:
   - executor-tarefas
   script:
