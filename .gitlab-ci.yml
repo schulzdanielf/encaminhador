@@ -25,7 +25,7 @@ build-project:
   image: schulzdaniel/django:1.1
   services:
   - docker:dind
-  - postgres
+  - name: postgres
     alias: db
   variables:
     POSTGRES_DB: 'postgres'
