@@ -42,6 +42,7 @@ build-project:
 
 
 test-project:
+  image: schulzdaniel/django:1.1
   stage: test
   services:
   - docker:dind
@@ -52,8 +53,8 @@ test-project:
     POSTGRES_USER: 'postgres'
     POSTGRES_PASSWORD: 'postgres'
   dependencies:
-#  - build-project
+  - build-project
   tags:
   - executor-tarefas
   script:
-  - python -m manage.py test
+  - python docker/manage.py test
