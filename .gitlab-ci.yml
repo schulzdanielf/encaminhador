@@ -10,19 +10,27 @@ stages:
 build-docker:
   services:
   - docker:dind
-
   before_script:
   - docker info
   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
-
   stage: pre-build
   script:
   - docker build -t django docker/.
   - docker tag django schulzdaniel/django:1.1
   - docker push schulzdaniel/django:1.1
+  tags:
+  - executor-tarefas
 
 
 build-project:
+  image: schulzdaniel/django:1.1
+  services:
+  - docker:dind
+  - postgres
+  variables:
+    POSTGRES_DB: 'postgres'
+    POSTGRES_USER: 'postgres'
+    POSTGRES_PASSWORD: 'postgres'
   stage: build
   tags:
   - executor-tarefas
