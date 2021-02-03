@@ -7,19 +7,18 @@ stages:
 - deploy
 
 
-build-docker:
-  services:
-  - docker:dind
-  before_script:
-  - docker info
-  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
-  stage: pre-build
-  script:
-  - docker build -t django docker/.
-  - docker tag django schulzdaniel/django:1.1
-  - docker push schulzdaniel/django:1.1
-  tags:
-  - executor-tarefas
+#build-docker:
+#  services:
+#  - docker:dind
+#  before_script:
+#  - docker info
+#  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
+#  stage: pre-build
+#  - docker build -t django docker/.
+#  - docker tag django schulzdaniel/django:1.1
+#  - docker push schulzdaniel/django:1.1
+#  tags:
+#  - executor-tarefas
 
 
 build-project:
@@ -34,8 +33,8 @@ build-project:
   stage: build
   tags:
   - executor-tarefas
-  dependencies:
-  - build-docker
+#  dependencies:
+#  - build-docker
   script:
   - python manage.py makemigrations
   - python manage.py migrate
