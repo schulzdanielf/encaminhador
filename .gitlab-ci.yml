@@ -1,5 +1,11 @@
 image: docker:stable
 
+stages:
+- pre-build
+- build
+- test
+- deploy
+
 services:
 - docker:dind
 
@@ -14,3 +20,12 @@ build-docker:
   - docker build -t django docker/.
   - docker tag django schulzdaniel/django:1.1
   - docker push schulzdaniel/django:1.1
+
+build-project:
+  stage: build
+  tags:
+  - executor-tarefas
+  dependencies:
+  - build-docker
+  script:
+  - echo "runner"
